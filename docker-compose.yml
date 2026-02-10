@@ -27,6 +27,7 @@ services:
 
   backend:
     build: ./backend
+    image: leventoner/french-course-backend:latest
     container_name: francapp_backend
     volumes:
       - ./backend:/app
@@ -47,6 +48,7 @@ services:
 
   frontend:
     build: ./frontend
+    image: leventoner/french-course-frontend:latest
     container_name: francapp_frontend
     volumes:
       - ./frontend:/app
