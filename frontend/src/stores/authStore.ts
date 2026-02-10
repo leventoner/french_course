@@ -30,4 +30,3 @@ export const useAuthStore = create<AuthState>((set) => ({
         set({ user: null, token: null });
     },
 }));
-archaeology = useAuthStore
