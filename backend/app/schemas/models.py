@@ -28,12 +28,16 @@ class WordBase(BaseModel):
     plural_form: Optional[str] = None
     notes: Optional[str] = None
 
+class WordCreate(WordBase):
+    category_id: int
+    level_id: int
+
 class WordResponse(WordBase):
     id: int
     category_id: int
     level_id: int
-    audio_url: Optional[str]
-    image_url: Optional[str]
+    audio_url: Optional[str] = None
+    image_url: Optional[str] = None
     class Config:
         from_attributes = True
 
@@ -57,6 +61,10 @@ class LessonBase(BaseModel):
     lesson_type: str
     xp_reward: int
     order_index: int
+
+class LessonCreate(LessonBase):
+    level_id: int
+    category_id: int
 
 class LessonResponse(LessonBase):
     id: int

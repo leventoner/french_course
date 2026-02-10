@@ -14,6 +14,11 @@ import SearchPage from './pages/SearchPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminWordsPage from './pages/admin/AdminWordsPage';
+import AdminLessonsPage from './pages/admin/AdminLessonsPage';
+import AdminUsersPage from './pages/admin/AdminUsersPage';
+import AdminSettingsPage from './pages/admin/AdminSettingsPage';
+import AIGeneratorPage from './pages/admin/AIGeneratorPage';
 
 const App = () => {
     const { token, user, fetchMe } = useAuthStore();
@@ -40,6 +45,11 @@ const App = () => {
                 <Route path="/progress" element={token ? <Layout><ProgressPage /></Layout> : <Navigate to="/login" />} />
                 <Route path="/search" element={token ? <Layout><SearchPage /></Layout> : <Navigate to="/login" />} />
                 <Route path="/admin" element={token && user?.is_admin ? <Layout><AdminDashboard /></Layout> : <Navigate to="/" />} />
+                <Route path="/admin/words" element={token && user?.is_admin ? <Layout><AdminWordsPage /></Layout> : <Navigate to="/" />} />
+                <Route path="/admin/lessons" element={token && user?.is_admin ? <Layout><AdminLessonsPage /></Layout> : <Navigate to="/" />} />
+                <Route path="/admin/users" element={token && user?.is_admin ? <Layout><AdminUsersPage /></Layout> : <Navigate to="/" />} />
+                <Route path="/admin/settings" element={token && user?.is_admin ? <Layout><AdminSettingsPage /></Layout> : <Navigate to="/" />} />
+                <Route path="/admin/generate" element={token && user?.is_admin ? <Layout><AIGeneratorPage /></Layout> : <Navigate to="/" />} />
 
                 {/* Catch all */}
                 <Route path="*" element={<Navigate to="/" />} />

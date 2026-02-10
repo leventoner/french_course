@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     MEDIA_ROOT: str = "/app/media"
     AUDIO_PATH: str = "/app/media/audio"
     IMAGE_PATH: str = "/app/media/images"
+    GEMINI_API_KEY: str = ""
 
     class Config:
         env_file = ".env"

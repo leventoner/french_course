@@ -7,14 +7,15 @@ import {
     BarChart3,
     Search,
     User,
-    LogOut
+    LogOut,
+    Shield
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../../stores/authStore';
 
 const Sidebar = () => {
     const location = useLocation();
-    const logout = useAuthStore((state) => state.logout);
+    const { logout, user } = useAuthStore();
 
     const menuItems = [
         { icon: BookOpen, label: 'Dersler', path: '/lessons' },
@@ -24,6 +25,10 @@ const Sidebar = () => {
         { icon: BarChart3, label: 'İlerleme', path: '/progress' },
         { icon: Search, label: 'Sözlük', path: '/search' },
     ];
+
+    if (user?.is_admin) {
+        menuItems.push({ icon: Shield, label: 'Yönetim', path: '/admin' });
+    }
 
     return (
         <div className="w-64 bg-white dark:bg-dark-card border-r border-slate-200 dark:border-slate-800 flex flex-col h-screen sticky top-0">

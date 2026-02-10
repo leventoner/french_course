@@ -12,6 +12,7 @@ import {
 import { motion } from 'framer-motion';
 import { useAdminStore } from '../../stores/adminStore';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const AdminDashboard = () => {
     const { stats, fetchStats, loading } = useAdminStore();
@@ -29,10 +30,10 @@ const AdminDashboard = () => {
                     <h1 className="text-3xl font-black text-slate-800 dark:text-white mb-2">Yönetim Paneli</h1>
                     <p className="text-slate-500 font-medium">İçerik ve kullanıcı yönetimini buradan yapabilirsiniz.</p>
                 </div>
-                <button className="bg-primary text-white px-6 py-3 rounded-2xl font-bold flex items-center space-x-2 hover:scale-105 transition-all shadow-lg shadow-primary/20">
+                <Link to="/admin/generate" className="bg-primary text-white px-6 py-3 rounded-2xl font-bold flex items-center space-x-2 hover:scale-105 transition-all shadow-lg shadow-primary/20">
                     <PlusCircle size={20} />
                     <span>Hızlı İçerik Ekle</span>
-                </button>
+                </Link>
             </div>
 
             {/* Stats Overview */}
@@ -70,10 +71,10 @@ const AdminDashboard = () => {
                         Hızlı Bağlantılar
                     </h2>
                     <div className="grid grid-cols-2 gap-4">
-                        <QuickLink label="Dersleri Yönet" icon={BookOpen} color="indigo" />
-                        <QuickLink label="Kelimeleri Yönet" icon={Type} color="emerald" />
-                        <QuickLink label="Kullanıcılar" icon={Users} color="orange" />
-                        <QuickLink label="Sistem Ayarları" icon={Settings} color="slate" />
+                        <QuickLink label="Dersleri Yönet" icon={BookOpen} color="indigo" path="/admin/lessons" />
+                        <QuickLink label="Kelimeleri Yönet" icon={Type} color="emerald" path="/admin/words" />
+                        <QuickLink label="Kullanıcılar" icon={Users} color="orange" path="/admin/users" />
+                        <QuickLink label="Sistem Ayarları" icon={Settings} color="slate" path="/admin/settings" />
                     </div>
                 </div>
             </div>
@@ -93,13 +94,13 @@ const AdminStatCard = ({ icon: Icon, label, value, color }: any) => (
     </div>
 );
 
-const QuickLink = ({ label, icon: Icon, color }: any) => (
-    <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-transparent hover:border-primary/20 transition-all cursor-pointer group flex flex-col items-center text-center space-y-3">
-        <div className={`p-3 rounded-xl bg-white dark:bg-slate-700 shadow-sm group-hover:scale-110 transition-transform text-${color}-500`}>
-            <Icon size={20} />
+const QuickLink = ({ label, icon: Icon, color, path }: any) => (
+    <Link to={path} className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-transparent hover:border-primary/20 transition-all cursor-pointer group flex flex-col items-center text-center space-y-3">
+        <div className={`p-3 rounded-xl bg-white dark:bg-slate-700 shadow-sm group-hover:scale-110 transition-transform text-${color}-50`}>
+            <Icon size={20} className={`text-${color}-500`} />
         </div>
         <span className="text-sm font-bold text-slate-700 dark:text-slate-300">{label}</span>
-    </div>
+    </Link>
 );
 
 export default AdminDashboard;
