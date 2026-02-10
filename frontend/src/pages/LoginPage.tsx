@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useAuthStore } from '../stores/authStore';
 import { useNavigate, Link } from 'react-router-dom';
-import { LogIn, Mail, Lock, AlertCircle, Loader2 } from 'lucide-react';
+import { LogIn, User, Lock, AlertCircle, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const LoginPage: React.FC = () => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -18,10 +18,10 @@ const LoginPage: React.FC = () => {
         setLoading(true);
         setError(null);
         try {
-            await login(email, password);
+            await login(username, password);
             navigate('/');
         } catch (err: any) {
-            setError('Giriş başarısız. Lütfen bilgilerinizi kontrol edin.');
+            setError('Giriş başarısız. Lütfen kullanıcı adı ve şifrenizi kontrol edin.');
         } finally {
             setLoading(false);
         }
@@ -30,8 +30,8 @@ const LoginPage: React.FC = () => {
     return (
         <div className="min-h-screen bg-gray-950 flex flex-col justify-center items-center p-6 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat">
             <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
                 className="w-full max-w-md bg-gray-900/40 backdrop-blur-2xl border border-gray-800 p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden"
             >
                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-blue-600/20 rounded-full blur-3xl" />
@@ -58,15 +58,15 @@ const LoginPage: React.FC = () => {
 
                 <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
                     <div className="space-y-2">
-                        <label className="text-xs font-black text-gray-500 uppercase tracking-widest ml-4">E-posta</label>
+                        <label className="text-xs font-black text-gray-500 uppercase tracking-widest ml-4">Kullanıcı Adı</label>
                         <div className="relative">
-                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={20} />
+                            <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={20} />
                             <input
-                                type="email"
-                                placeholder="ornek@mail.com"
+                                type="text"
+                                placeholder="kullanıcı adı"
                                 className="w-full bg-gray-950/50 border border-gray-800 rounded-2xl py-4 pl-12 pr-4 text-white placeholder-gray-700 focus:outline-none focus:border-blue-500 transition-all"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                                 required
                             />
                         </div>

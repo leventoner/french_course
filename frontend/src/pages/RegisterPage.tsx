@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { UserPlus, Mail, Lock, User, AlertCircle, Loader2 } from 'lucide-react';
-import api from '../api/client';
+import { useAuthStore } from '../stores/authStore';
 import { motion } from 'framer-motion';
 
 const RegisterPage: React.FC = () => {
@@ -10,6 +10,8 @@ const RegisterPage: React.FC = () => {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    const register = useAuthStore((state) => state.register);
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -17,7 +19,7 @@ const RegisterPage: React.FC = () => {
         setLoading(true);
         setError(null);
         try {
-            await api.post('/auth/register', { username, email, password });
+            await register(username, email, password);
             navigate('/login');
         } catch (err: any) {
             setError('Kayıt başarısız. Bu e-posta veya kullanıcı adı kullanımda olabilir.');

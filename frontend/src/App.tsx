@@ -15,7 +15,13 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
 const App = () => {
-    const token = useAuthStore((state) => state.token);
+    const { token, fetchMe } = useAuthStore();
+
+    useEffect(() => {
+        if (token) {
+            fetchMe();
+        }
+    }, [token, fetchMe]);
 
     return (
         <BrowserRouter>
