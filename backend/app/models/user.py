@@ -17,6 +17,7 @@ class User(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     preferred_daily_goal = Column(Integer, default=10)
     avatar_url = Column(String, nullable=True)
+    is_admin = Column(Boolean, default=False)
 
     progress = relationship("UserProgress", back_populates="user")
     word_progress = relationship("UserWordProgress", back_populates="user")

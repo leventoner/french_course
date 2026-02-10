@@ -34,9 +34,10 @@ def read_root():
     return {"message": "Welcome to FrançApp API"}
 
 # Routers
-from .routers import auth, levels, words, tts, lessons, grammar, progress, achievements
+from .routers import auth, levels, words, tts, lessons, grammar, progress, achievements, admin
 
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
+app.include_router(admin.router, prefix="/admin", tags=["admin"])
 app.include_router(levels.router, prefix="/levels", tags=["levels"])
 app.include_router(words.router, prefix="/words", tags=["words"])
 app.include_router(lessons.router, prefix="/lessons", tags=["lessons"])

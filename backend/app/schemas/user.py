@@ -22,6 +22,7 @@ class UserResponse(UserBase):
     created_at: datetime
     preferred_daily_goal: int
     avatar_url: Optional[str]
+    is_admin: bool
 
     class Config:
         from_attributes = True

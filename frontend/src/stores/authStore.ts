@@ -10,6 +10,7 @@ interface User {
     streak_days: number;
     avatar_url?: string;
     preferred_daily_goal: number;
+    is_admin: boolean;
 }
 
 interface AuthState {

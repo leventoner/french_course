@@ -13,9 +13,10 @@ import ProgressPage from './pages/ProgressPage';
 import SearchPage from './pages/SearchPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import AdminDashboard from './pages/admin/AdminDashboard';
 
 const App = () => {
-    const { token, fetchMe } = useAuthStore();
+    const { token, user, fetchMe } = useAuthStore();
 
     useEffect(() => {
         if (token) {
@@ -38,6 +39,7 @@ const App = () => {
                 <Route path="/games" element={token ? <Layout><GamesPage /></Layout> : <Navigate to="/login" />} />
                 <Route path="/progress" element={token ? <Layout><ProgressPage /></Layout> : <Navigate to="/login" />} />
                 <Route path="/search" element={token ? <Layout><SearchPage /></Layout> : <Navigate to="/login" />} />
+                <Route path="/admin" element={token && user?.is_admin ? <Layout><AdminDashboard /></Layout> : <Navigate to="/" />} />
 
                 {/* Catch all */}
                 <Route path="*" element={<Navigate to="/" />} />
