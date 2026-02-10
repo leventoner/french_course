@@ -10,7 +10,7 @@ import {
     LogOut
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { useAuthStore } from '../stores/authStore';
+import { useAuthStore } from '../../stores/authStore';
 
 const Sidebar = () => {
     const location = useLocation();
@@ -45,8 +45,8 @@ const Sidebar = () => {
                             key={item.path}
                             to={item.path}
                             className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${isActive
-                                    ? 'bg-primary/10 text-primary font-semibold'
-                                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
+                                ? 'bg-primary/10 text-primary font-semibold'
+                                : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                                 }`}
                         >
                             <Icon size={20} />
