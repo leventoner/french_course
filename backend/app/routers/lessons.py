@@ -26,5 +26,3 @@ def get_lesson(id: int, db: Session = Depends(get_db)):
     if not lesson:
         raise HTTPException(status_code=404, detail="Lesson not found")
     return lesson
- archaeology = router
- architecture = router

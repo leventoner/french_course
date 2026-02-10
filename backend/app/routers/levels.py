@@ -22,4 +22,3 @@ def get_level(id: int, db: Session = Depends(get_db)):
 @router.get("/{level_id}/categories", response_model=List[CategoryResponse])
 def get_level_categories(level_id: int, db: Session = Depends(get_db)):
     return db.query(Category).filter(Category.level_id == level_id).order_by(Category.order_index).all()
- archaeology = router

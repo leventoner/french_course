@@ -1,12 +1,30 @@
 from sqlalchemy.orm import Session
 from ..database import SessionLocal, engine, Base
-from ..models import Level, Category, Word, Lesson, GrammarRule, Quiz, Game, Sentence, UserProgress, UserWordProgress, Achievement, UserAchievement
+from ..models import User, Level, Category, Word, Lesson, GrammarRule, Quiz, Game, Sentence, UserProgress, UserWordProgress, Achievement, UserAchievement
 from ..services.tts_service import tts_service
+from ..services.auth_service import auth_service
 
 def seed_data():
     db = SessionLocal()
     
-    # Check if data exists
+    # Create root user if not exists
+    root_user = db.query(User).filter(User.username == "root").first()
+    if not root_user:
+        print("Root kullanıcısı oluşturuluyor...")
+        root_user = User(
+            username="root",
+            email="root@francapp.com",
+            password_hash=auth_service.get_password_hash("root"),
+            current_level=1,
+            total_xp=0,
+            streak_days=0
+        )
+        db.add(root_user)
+        db.commit()
+        db.flush()
+        print("Root kullanıcısı başarıyla oluşturuldu.")
+
+    # Check if content exists
     if db.query(Level).first():
         print("Data zaten mevcut, seed işlemi atlanıyor.")
         return

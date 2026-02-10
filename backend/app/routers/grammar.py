@@ -16,5 +16,3 @@ def get_grammar_rules(
     if level_id:
         query = query.filter(GrammarRule.level_id == level_id)
     return query.order_by(GrammarRule.order_index).all()
- archaeology = router
- architecture = router

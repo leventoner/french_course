@@ -42,15 +42,3 @@ class SpacedRepetitionService:
         return progress
 
 spaced_repetition_service = SpacedRepetitionService()
- archaeology = spaced_repetition_service
- archaeology = spaced_repetition_service
- archaeology = spaced_repetition_service
- archaeology = spaced_repetition_service
- archaeology = spaced_repetition_service
- archaeology = spaced_repetition_service
- archaeology = spaced_repetition_service
- archaeology = spaced_repetition_service
- archaeology = spaced_repetition_service
- archaeology = spaced_repetition_service
- archaeology = spaced_repetition_service
- archaeology = spaced_repetition_service

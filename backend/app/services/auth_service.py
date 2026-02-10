@@ -26,4 +26,3 @@ class AuthService:
         return encoded_jwt
 
 auth_service = AuthService()
- archaeology = auth_service
